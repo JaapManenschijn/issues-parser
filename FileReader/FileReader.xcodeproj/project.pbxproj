@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		64C812F928AA459400D8366D /* FileReader.docc in Sources */ = {isa = PBXBuildFile; fileRef = 64C812F828AA459400D8366D /* FileReader.docc */; };
 		64C812FF28AA459500D8366D /* FileReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C812F428AA459400D8366D /* FileReader.framework */; };
-		64C8130428AA459500D8366D /* FileReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8130328AA459500D8366D /* FileReaderTests.swift */; };
 		64C8130528AA459500D8366D /* FileReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C812F728AA459400D8366D /* FileReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64C8130F28AA4C4C00D8366D /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8130E28AA4C4C00D8366D /* FileReader.swift */; };
 		64C8131428AA4D8D00D8366D /* DocumentPickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131328AA4D8D00D8366D /* DocumentPickerRepresentable.swift */; };
@@ -18,6 +17,7 @@
 		64C8134228AA66BF00D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134128AA66BF00D8366D /* Common.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		64C8135428AA795F00D8366D /* FileReadSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135328AA795F00D8366D /* FileReadSubscription.swift */; };
 		64C8135628AA7BCA00D8366D /* FileReadPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135528AA7BCA00D8366D /* FileReadPublisher.swift */; };
+		64C8135A28AA901400D8366D /* FileReaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 		64C812F728AA459400D8366D /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
 		64C812F828AA459400D8366D /* FileReader.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = FileReader.docc; sourceTree = "<group>"; };
 		64C812FE28AA459500D8366D /* FileReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C8130328AA459500D8366D /* FileReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderTests.swift; sourceTree = "<group>"; };
 		64C8130E28AA4C4C00D8366D /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		64C8131328AA4D8D00D8366D /* DocumentPickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerRepresentable.swift; sourceTree = "<group>"; };
 		64C8131528AA62F100D8366D /* FileReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModel.swift; sourceTree = "<group>"; };
@@ -43,6 +42,8 @@
 		64C8134128AA66BF00D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C8135328AA795F00D8366D /* FileReadSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadSubscription.swift; sourceTree = "<group>"; };
 		64C8135528AA7BCA00D8366D /* FileReadPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadPublisher.swift; sourceTree = "<group>"; };
+		64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModelTests.swift; sourceTree = "<group>"; };
+		64C8139A28AA95AB00D8366D /* TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +100,7 @@
 		64C8130228AA459500D8366D /* FileReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				64C8130328AA459500D8366D /* FileReaderTests.swift */,
+				64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */,
 			);
 			path = FileReaderTests;
 			sourceTree = "<group>";
@@ -149,6 +150,7 @@
 		64C8134028AA66BF00D8366D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64C8139A28AA95AB00D8366D /* TestHelpers.framework */,
 				64C8134128AA66BF00D8366D /* Common.framework */,
 			);
 			name = Frameworks;
@@ -286,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C8130428AA459500D8366D /* FileReaderTests.swift in Sources */,
+				64C8135A28AA901400D8366D /* FileReaderViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +485,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R3Y2T5257C;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jaapmanenschijn.FileReaderTests;
@@ -499,6 +502,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R3Y2T5257C;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jaapmanenschijn.FileReaderTests;

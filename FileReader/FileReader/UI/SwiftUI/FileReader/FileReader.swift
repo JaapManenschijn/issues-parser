@@ -34,7 +34,7 @@ public struct FileReader<Content: View>: View {
     
     public var body: some View {
         LoadingView(
-            isShowing: $viewModel.isProcessing,
+            isShowing: viewModel.isProcessing,
             title: "Processing files") {
                 Button(
                     action: viewModel.onButtonAction,

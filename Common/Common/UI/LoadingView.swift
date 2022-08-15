@@ -10,16 +10,16 @@ import SwiftUI
 public struct LoadingView<Content: View>: View {
     public typealias LoadingViewContent = () -> Content
     
-    @Binding var isShowing: Bool
+    var isShowing: Bool
     let title: String
     var content: LoadingViewContent
     
     public init(
-        isShowing: Binding<Bool>,
+        isShowing: Bool,
         title: String,
         @ViewBuilder content: @escaping LoadingViewContent
     ) {
-        self._isShowing = isShowing
+        self.isShowing = isShowing
         self.title = title
         self.content = content
     }
@@ -52,7 +52,7 @@ public struct LoadingView<Content: View>: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView(isShowing: .constant(true), title: "Loading...") {
+        LoadingView(isShowing: true, title: "Loading...") {
             Text("Content view")
         }
     }
