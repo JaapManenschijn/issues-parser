@@ -10,26 +10,25 @@ import UniformTypeIdentifiers
 import Common
 
 public struct FileReader<Content: View>: View {
-    public typealias FileReaderCompletionHandler = (Result<[FileDataHolder], Error>) -> Void
     public typealias ButtonContent = () -> Content
-    
+        
     let types: [UTType]
     let allowMultiple: Bool
-    let completionHandler: FileReaderCompletionHandler
     let content: ButtonContent
     
     @ObservedObject var viewModel: FileReaderViewModel
+    @Binding var result: [FileReadResult]
     
     public init(
         types: [UTType],
         allowMultiple: Bool,
-        completionHandler: @escaping FileReaderCompletionHandler,
+        result: Binding<[FileReadResult]>,
         @ViewBuilder content: @escaping ButtonContent
     ) {
         self.types = types
         self.allowMultiple = allowMultiple
-        self.completionHandler = completionHandler
         self.content = content
+        self._result = result
         self.viewModel = FileReaderViewModel()
     }
     
@@ -50,14 +49,15 @@ public struct FileReader<Content: View>: View {
                     viewModel.onFilesPicked(urls: urls)
                 }
             }
+            .onChange(of: viewModel.results) { newValue in
+                result = newValue
+            }
     }
 }
 
 struct FileReader_Previews: PreviewProvider {
     static var previews: some View {
-        FileReader(types: [.commaSeparatedText], allowMultiple: false, completionHandler: { _ in
-            
-        }, content: {
+        FileReader(types: [.commaSeparatedText], allowMultiple: false, result: .constant([]), content: {
             Text("Pick & read file")
         })
     }

@@ -9,15 +9,20 @@ import SwiftUI
 import FileReader
 
 struct ContentView: View {
+    @State var readResults: [FileReadResult] = []
+    
     var body: some View {
-        FileReader(types: [.commaSeparatedText], allowMultiple: true) { result in
-            //ignore
-        } content: {
+        FileReader(types: [.commaSeparatedText], allowMultiple: true, result: $readResults, content: {
             ZStack {
                 Text("Hello, world!")
                     .padding()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        })
+        .onChange(of: readResults) { results in
+            results.forEach { readResult in
+                print("result for \(readResult.url): \(readResult.result)")
+            }
         }
     }
 }
