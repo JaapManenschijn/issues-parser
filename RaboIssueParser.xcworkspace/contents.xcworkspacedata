@@ -4,4 +4,11 @@
    <FileRef
       location = "container:RaboIssueParser/RaboIssueParser.xcodeproj">
    </FileRef>
+   <Group
+      location = "container:"
+      name = "Features">
+      <FileRef
+         location = "group:FileReader/FileReader.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>
