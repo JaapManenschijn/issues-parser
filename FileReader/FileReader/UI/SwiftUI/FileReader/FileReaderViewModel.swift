@@ -9,6 +9,7 @@ import Foundation
 
 class FileReaderViewModel: ObservableObject {
     @Published var isPresented: Bool = false
+    @Published var isProcessing: Bool = false
     
     func onButtonAction() {
         guard !isPresented else { return }
@@ -17,6 +18,7 @@ class FileReaderViewModel: ObservableObject {
     }
     
     func onFilesPicked(urls: [URL]) {
-        
+        isProcessing = true
+        print(urls)
     }
 }

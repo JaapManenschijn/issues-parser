@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import FileReader
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        FileReader(types: [.commaSeparatedText], allowMultiple: true) { result in
+            //ignore
+        } content: {
+            ZStack {
+                Text("Hello, world!")
+                    .padding()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
 

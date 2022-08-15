@@ -11,4 +11,7 @@
          location = "group:FileReader/FileReader.xcodeproj">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:Common/Common.xcodeproj">
+   </FileRef>
 </Workspace>

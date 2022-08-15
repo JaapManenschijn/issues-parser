@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import Common
 
 public struct FileReader<Content: View>: View {
     public typealias FileReaderCompletionHandler = (Result<[FileDataHolder], Error>) -> Void
@@ -33,18 +34,22 @@ public struct FileReader<Content: View>: View {
     }
     
     public var body: some View {
-        Button(
-            action: viewModel.onButtonAction,
-            label: {
-                content()
+        LoadingView(
+            isShowing: $viewModel.isProcessing,
+            title: "Processing files") {
+                Button(
+                    action: viewModel.onButtonAction,
+                    label: {
+                        content()
+                    }
+                )
+                .disabled(viewModel.isPresented)
             }
-        )
-        .disabled(viewModel.isPresented)
-        .sheet(isPresented: $viewModel.isPresented) {
-            DocumentPickerRepresentable(types: types, allowMultiple: allowMultiple) { urls in
-                print(urls)
+            .sheet(isPresented: $viewModel.isPresented) {
+                DocumentPickerRepresentable(types: types, allowMultiple: allowMultiple) { urls in
+                    viewModel.onFilesPicked(urls: urls)
+                }
             }
-        }
     }
 }
 
