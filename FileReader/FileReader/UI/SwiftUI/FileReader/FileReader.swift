@@ -9,7 +9,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct FileReader<Content: View>: View {
-    public typealias FileReaderCompletionHandler = (Result<Data, Error>) -> Void
+    public typealias FileReaderCompletionHandler = (Result<[FileDataHolder], Error>) -> Void
     public typealias ButtonContent = () -> Content
     
     let types: [UTType]
@@ -17,7 +17,7 @@ public struct FileReader<Content: View>: View {
     let completionHandler: FileReaderCompletionHandler
     let content: ButtonContent
     
-    @State private var isPresented: Bool = false
+    @ObservedObject var viewModel: FileReaderViewModel
     
     public init(
         types: [UTType],
@@ -29,19 +29,18 @@ public struct FileReader<Content: View>: View {
         self.allowMultiple = allowMultiple
         self.completionHandler = completionHandler
         self.content = content
+        self.viewModel = FileReaderViewModel()
     }
     
     public var body: some View {
         Button(
-            action: {
-                if !isPresented { isPresented = true }
-            },
+            action: viewModel.onButtonAction,
             label: {
                 content()
             }
         )
-        .disabled(isPresented)
-        .sheet(isPresented: $isPresented) {
+        .disabled(viewModel.isPresented)
+        .sheet(isPresented: $viewModel.isPresented) {
             DocumentPickerRepresentable(types: types, allowMultiple: allowMultiple) { urls in
                 print(urls)
             }
