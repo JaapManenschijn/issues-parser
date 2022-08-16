@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct User {
+public struct User: Equatable {
     let firstName: String?
     let surName: String?
     let issueCount: Int

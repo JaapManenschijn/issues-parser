@@ -8,9 +8,11 @@
 import SwiftUI
 import FileReader
 import CSVParser
+import Combine
 
 struct ContentView: View {
     @State var readResults: [FileReadResult] = []
+    @ObservedObject var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
         FileReader(types: [.commaSeparatedText], allowMultiple: true, result: $readResults, content: {
@@ -25,23 +27,14 @@ struct ContentView: View {
                 print("result for \(readResult.url): \(readResult.result)")
                 switch readResult.result {
                 case .success(let data):
-                    let result = CSVParser.importTable(data: data)
-                    parseResult(result)
-                case .failure(let error):
-                    print(error)
+                    viewModel.onParseCsv(data: data)
+                default:
+                    break
                 }
             }
         }
-    }
-    
-    private func parseResult(_ result: Result<[User], Error>) {
-        switch result {
-        case .success(let users):
-            users.forEach { user in
-                print(user)
-            }
-        case .failure(let error):
-            print((error as? MalformedCSVError)?.message ?? "")
+        .onChange(of: viewModel.results) { newValue in
+            print("got new users: \(newValue.count)")
         }
     }
 }
@@ -49,5 +42,24 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+class ContentViewModel: ObservableObject {
+    
+    @Published private(set) var results: [User] = []
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    func onParseCsv(data: Data) {
+        CSVParserPublisher(data: data)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                print(error)
+            } receiveValue: { users in
+                self.results = users
+            }
+            .store(in: &cancellables)
     }
 }

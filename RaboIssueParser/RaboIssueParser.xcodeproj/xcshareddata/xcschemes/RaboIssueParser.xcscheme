@@ -48,6 +48,16 @@
                ReferencedContainer = "container:../FileReader/FileReader.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "642FC4E728AB8E8D00A07DFE"
+               BuildableName = "CSVParserTests.xctest"
+               BlueprintName = "CSVParserTests"
+               ReferencedContainer = "container:../CSVParser/CSVParser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

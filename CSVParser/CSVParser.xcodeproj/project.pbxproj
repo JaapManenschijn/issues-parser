@@ -16,6 +16,15 @@
 		642FC50228AB955200A07DFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50028AB955200A07DFE /* User.swift */; };
 		642FC50728AB977000A07DFE /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC50628AB977000A07DFE /* Common.framework */; };
 		642FC50828AB977000A07DFE /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC50628AB977000A07DFE /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		642FC50C28ABBAE500A07DFE /* CSVParserSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50B28ABBAE500A07DFE /* CSVParserSubscriber.swift */; };
+		642FC50D28ABBAE500A07DFE /* CSVParserSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50B28ABBAE500A07DFE /* CSVParserSubscriber.swift */; };
+		642FC50F28ABC16600A07DFE /* CSVParserPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50E28ABC16600A07DFE /* CSVParserPublisher.swift */; };
+		642FC51028ABC16600A07DFE /* CSVParserPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50E28ABC16600A07DFE /* CSVParserPublisher.swift */; };
+		642FC51628ABD49600A07DFE /* bigCsv.csv in Resources */ = {isa = PBXBuildFile; fileRef = 642FC51528ABD49500A07DFE /* bigCsv.csv */; };
+		642FC51928ABE82B00A07DFE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51828ABE82B00A07DFE /* Array+Extensions.swift */; };
+		642FC51B28ABE93700A07DFE /* DataFrame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */; };
+		642FC51C28ABF33300A07DFE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51828ABE82B00A07DFE /* Array+Extensions.swift */; };
+		642FC51D28ABF33900A07DFE /* DataFrame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +59,11 @@
 		642FC4F928AB8F7200A07DFE /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		642FC50028AB955200A07DFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		642FC50628AB977000A07DFE /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		642FC50B28ABBAE500A07DFE /* CSVParserSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserSubscriber.swift; sourceTree = "<group>"; };
+		642FC50E28ABC16600A07DFE /* CSVParserPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParserPublisher.swift; sourceTree = "<group>"; };
+		642FC51528ABD49500A07DFE /* bigCsv.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bigCsv.csv; sourceTree = "<group>"; };
+		642FC51828ABE82B00A07DFE /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFrame+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +108,8 @@
 		642FC4E228AB8E8D00A07DFE /* CSVParser */ = {
 			isa = PBXGroup;
 			children = (
+				642FC51728ABE81F00A07DFE /* Extensions */,
+				642FC50A28ABBAD200A07DFE /* Util */,
 				642FC4FF28AB953A00A07DFE /* Model */,
 				642FC4F828AB8F5F00A07DFE /* Parser */,
 				642FC4E328AB8E8D00A07DFE /* CSVParser.h */,
@@ -104,6 +120,7 @@
 		642FC4EC28AB8E8D00A07DFE /* CSVParserTests */ = {
 			isa = PBXGroup;
 			children = (
+				642FC51528ABD49500A07DFE /* bigCsv.csv */,
 				642FC4ED28AB8E8D00A07DFE /* CSVParserTests.swift */,
 			);
 			path = CSVParserTests;
@@ -131,6 +148,24 @@
 				642FC50628AB977000A07DFE /* Common.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		642FC50A28ABBAD200A07DFE /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				642FC50B28ABBAE500A07DFE /* CSVParserSubscriber.swift */,
+				642FC50E28ABC16600A07DFE /* CSVParserPublisher.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		642FC51728ABE81F00A07DFE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				642FC51828ABE82B00A07DFE /* Array+Extensions.swift */,
+				642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642FC51628ABD49600A07DFE /* bigCsv.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				642FC50128AB955200A07DFE /* User.swift in Sources */,
+				642FC51928ABE82B00A07DFE /* Array+Extensions.swift in Sources */,
+				642FC50C28ABBAE500A07DFE /* CSVParserSubscriber.swift in Sources */,
+				642FC51B28ABE93700A07DFE /* DataFrame+Extensions.swift in Sources */,
+				642FC50F28ABC16600A07DFE /* CSVParserPublisher.swift in Sources */,
 				642FC4FA28AB8F7200A07DFE /* CSVParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +293,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642FC51D28ABF33900A07DFE /* DataFrame+Extensions.swift in Sources */,
 				642FC4EE28AB8E8D00A07DFE /* CSVParserTests.swift in Sources */,
+				642FC51C28ABF33300A07DFE /* Array+Extensions.swift in Sources */,
+				642FC51028ABC16600A07DFE /* CSVParserPublisher.swift in Sources */,
+				642FC50D28ABBAE500A07DFE /* CSVParserSubscriber.swift in Sources */,
 				642FC4FB28AB8F7200A07DFE /* CSVParser.swift in Sources */,
 				642FC50228AB955200A07DFE /* User.swift in Sources */,
 			);
