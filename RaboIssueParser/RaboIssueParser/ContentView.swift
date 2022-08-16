@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FileReader
+import CSVParser
 
 struct ContentView: View {
     @State var readResults: [FileReadResult] = []
@@ -22,7 +23,25 @@ struct ContentView: View {
         .onChange(of: readResults) { results in
             results.forEach { readResult in
                 print("result for \(readResult.url): \(readResult.result)")
+                switch readResult.result {
+                case .success(let data):
+                    let result = CSVParser.importTable(data: data)
+                    parseResult(result)
+                case .failure(let error):
+                    print(error)
+                }
             }
+        }
+    }
+    
+    private func parseResult(_ result: Result<[User], Error>) {
+        switch result {
+        case .success(let users):
+            users.forEach { user in
+                print(user)
+            }
+        case .failure(let error):
+            print((error as? MalformedCSVError)?.message ?? "")
         }
     }
 }
