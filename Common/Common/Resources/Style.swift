@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private class LocalResources {
+class LocalResources {
     // We're only using this class as a reference for the correct bundle
 }
 

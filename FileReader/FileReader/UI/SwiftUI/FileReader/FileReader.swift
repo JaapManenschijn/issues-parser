@@ -35,7 +35,7 @@ public struct FileReader<Content: View>: View {
     public var body: some View {
         LoadingView(
             isShowing: viewModel.isProcessing,
-            title: "Processing files") {
+            title: "processing".localized()) {
                 Button(
                     action: viewModel.onButtonAction,
                     label: {
