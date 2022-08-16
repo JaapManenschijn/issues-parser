@@ -38,6 +38,16 @@
                ReferencedContainer = "container:RaboIssueParser.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "64C812FD28AA459500D8366D"
+               BuildableName = "FileReaderTests.xctest"
+               BlueprintName = "FileReaderTests"
+               ReferencedContainer = "container:../FileReader/FileReader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
