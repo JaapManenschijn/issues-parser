@@ -14,32 +14,34 @@ public struct MalformedCSVError: Error {
 }
 
 /// The CSV parser. Uses different parsnig methods based on the iOS version
-class CSVParser {
+public class CSVParser {
     private let firstNameColumn = "First name"
     private let surNameColumn = "Sur name"
     private let issueCountColumn = "Issue count"
     private let dateOfBirthColumn = "Date of birth"
     private var lock = NSLock()
+    private let data: Data
     
-    var dateFormatter: ISO8601DateFormatter {
+    private var dateFormatter: ISO8601DateFormatter {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withFullDate]
         return formatter
     }
     
-    func parse(data: Data) -> Result<[User], Error> {
+    public init(data: Data) {
+        self.data = data
+    }
+    
+    public func parse() throws -> AsyncStream<User> {
         // For simplicity reasons, check the iOS version and pick the correct parsing method
         if #available(iOS 15, *) {
-            return parseCSVPreIOS15(data: data)
+            return try parseCSVPreIOS15()
         } else {
-            return parseCSVPreIOS15(data: data)
+            return try parseCSVPreIOS15()
         }
     }
     
-    /// Parses the data into a list of Users
-    /// - Parameter data: the csv data
-    /// - Returns: The result of the parsing. In case of a succesful parse, contains a list of users. In case of an error, contains the error
-    private func parseCSVPreIOS15(data: Data) -> Result<[User], Error> {
+    private func parseCSVPreIOS15() throws -> AsyncStream<User> {
         NSLog("Starting parse")
         // First, create a string from the data and split it into an array of lines
         let csvString = String(data: data, encoding: .utf8)
@@ -47,7 +49,7 @@ class CSVParser {
         
         // A header line is expected to be present. If it isn't (there are no lines...), return an error
         guard let headerLine = lines?.removeFirst() else {
-            return .failure(MalformedCSVError(message: "Missing header line"))
+            throw MalformedCSVError(message: "Missing header line")
         }
         
         // Split the header line into columns by splitting on comma. Afterwards, sanitize the result
@@ -61,9 +63,9 @@ class CSVParser {
         let dateOfBirthIndex = columns.firstIndex(of: dateOfBirthColumn)
         
         guard let firstNameIndex = firstNameIndex,
-        let surNameIndex = surNameIndex,
-        let issueCountIndex = issueCountIndex,
-        let dateOfBirthIndex = dateOfBirthIndex else {
+              let surNameIndex = surNameIndex,
+              let issueCountIndex = issueCountIndex,
+              let dateOfBirthIndex = dateOfBirthIndex else {
             var message = "Malformed CSV. Missing columns:\n"
             
             [
@@ -76,24 +78,14 @@ class CSVParser {
                     message += columnName + "\n"
                 }
             }
-            return .failure(MalformedCSVError(message: message))
+            throw MalformedCSVError(message: message)
         }
         
-        // Loop over the remaining lines, create User objects for each of them and return the result. By splitting the lines in chunks of max 15000 we speed up the process a bit for bigger csv files
-        var users: [Int: [User]] = [:]
-        let rows = lines?.compactMap({ String($0) })
+        let rows = lines?.compactMap({ String($0) }) ?? []
         
-        let chunkedRows = rows?.chunked(into: 15000)
-        
-        let concurrentQueue = DispatchQueue(label: "Concurrent", attributes: .concurrent)
-        let group = DispatchGroup()
-        
-        chunkedRows?.enumerated().forEach({ element in
-            group.enter()
-            let rows = element.element
-            var chunkUsers: [User] = []
-            concurrentQueue.async {
-                rows.forEach { row in
+        return AsyncStream<User> { continuation in
+            Task {
+                for row in rows {
                     let rowColumns = self.sanitize(row.split(separator: ",").map({ String($0) }))
                     
                     let firstName = rowColumns[safe: firstNameIndex] as? String
@@ -106,34 +98,16 @@ class CSVParser {
                         dateOfBirth = self.dateFormatter.date(from: dateOfBirthString)
                     }
                     
-                    chunkUsers.append(User(firstName: firstName, surName: surName, issueCount: issueCount ?? 0, dateOfBirth: dateOfBirth))
+                    let user = User(firstName: firstName, surName: surName, issueCount: issueCount ?? 0, dateOfBirth: dateOfBirth)
+                    continuation.yield(user)
                 }
-                
-                self.lock.lock()
-                users[element.offset] = chunkUsers
-                self.lock.unlock()
-                
-                group.leave()
+                continuation.finish()
             }
-        })
-        
-        group.wait()
-        NSLog("Finished parse")
-        
-        let sortedUserDictionary = users.sorted(by: { $0.key < $1.key })
-        let sortedUsers = sortedUserDictionary.flatMap { _, value in
-            return value
         }
-        
-        return .success(sortedUsers)
     }
     
-    
-    /// Parses the data into a list of Users
-    /// - Parameter data: the csv data
-    /// - Returns: The result of the parsing. In case of a succesful parse, contains a list of users. In case of an error, contains the error
     @available(iOS 15, *)
-    private func parseCSVIOS15(data: Data) -> Result<[User], Error> {
+    private func parseCSVIOS15() throws -> AsyncStream<User> {
         NSLog("Starting parse")
         // Since iOS15, iOS has some built in support for parsing CSV data. Let's use it when we can
         var importerTable: DataFrame = [:]
@@ -141,83 +115,54 @@ class CSVParser {
         // Just like in the pre iOS15 parse function, we expect the existence of a header row & use a comma as delimiter
         let options = CSVReadingOptions(hasHeaderRow: true, delimiter: ",")
         
-        do {
-            // Try to parse the data with the constructed options. If it fails, return the error
-            importerTable = try DataFrame(
-                csvData: data, columns: nil, rows: nil, types: [:], options: options)
+        // Try to parse the data with the constructed options. If it fails, return the error
+        importerTable = try DataFrame(
+            csvData: data, columns: nil, rows: nil, types: [:], options: options)
+        
+        // Find the correct indices for the expected columns. If not all columns are present, return an error
+        let firstNameIndex = importerTable.indexOfColumn(firstNameColumn)
+        let surNameIndex = importerTable.indexOfColumn(surNameColumn)
+        let issueCountIndex = importerTable.indexOfColumn(issueCountColumn)
+        let dateOfBirthIndex = importerTable.indexOfColumn(dateOfBirthColumn)
+        
+        guard let firstNameIndex = firstNameIndex,
+              let surNameIndex = surNameIndex,
+              let issueCountIndex = issueCountIndex,
+              let dateOfBirthIndex = dateOfBirthIndex else {
+            var message = "Malformed CSV. Missing columns:\n"
             
-            // Find the correct indices for the expected columns. If not all columns are present, return an error
-            let firstNameIndex = importerTable.indexOfColumn(firstNameColumn)
-            let surNameIndex = importerTable.indexOfColumn(surNameColumn)
-            let issueCountIndex = importerTable.indexOfColumn(issueCountColumn)
-            let dateOfBirthIndex = importerTable.indexOfColumn(dateOfBirthColumn)
-            
-            guard let firstNameIndex = firstNameIndex,
-            let surNameIndex = surNameIndex,
-            let issueCountIndex = issueCountIndex,
-            let dateOfBirthIndex = dateOfBirthIndex else {
-                var message = "Malformed CSV. Missing columns:\n"
-                
-                [
-                    firstNameColumn: firstNameIndex,
-                    surNameColumn: surNameIndex,
-                    issueCountColumn: issueCountIndex,
-                    dateOfBirthColumn: dateOfBirthIndex
-                ].forEach { (columnName, index) in
-                    if index == nil {
-                        message += columnName + "\n"
-                    }
-                }
-                return .failure(MalformedCSVError(message: message))
-            }
-            
-            // Loop over all rows, create User objects for each of them and return the result. By splitting the rows in chunks of max 15000 we speed up the process a bit for bigger csv files
-            var users: [Int: [User]] = [:]
-            
-            let chunkedRows = importerTable.rows.chunked(into: 15000)
-            
-            let concurrentQueue = DispatchQueue(label: "Concurrent", attributes: .concurrent)
-            let group = DispatchGroup()
-            
-            
-            chunkedRows.enumerated().forEach { element in
-                group.enter()
-                let rows = element.element
-                var chunkUsers: [User] = []
-                concurrentQueue.async {
-                    rows.forEach { row in
-                        let firstName = row[safe: firstNameIndex] as? String
-                        let surName = row[safe: surNameIndex] as? String
-                        let issueCount = row[safe: issueCountIndex] as? Int
-                        let dateOfBirthString = row[safe: dateOfBirthIndex] as? String
-                        var dateOfBirth: Date?
-                        if let dateOfBirthString = dateOfBirthString {
-                            dateOfBirth = self.dateFormatter.date(from: dateOfBirthString)
-                        }
-                        
-                        chunkUsers.append(User(firstName: firstName, surName: surName, issueCount: issueCount ?? 0, dateOfBirth: dateOfBirth))
-                    }
-                    
-                    self.lock.lock()
-                    users[element.offset] = chunkUsers
-                    self.lock.unlock()
-                    
-                    group.leave()
+            [
+                firstNameColumn: firstNameIndex,
+                surNameColumn: surNameIndex,
+                issueCountColumn: issueCountIndex,
+                dateOfBirthColumn: dateOfBirthIndex
+            ].forEach { (columnName, index) in
+                if index == nil {
+                    message += columnName + "\n"
                 }
             }
-            
-            group.wait()
-            NSLog("Finished parse")
-            
-            let sortedUserDictionary = users.sorted(by: { $0.key < $1.key })
-            let sortedUsers = sortedUserDictionary.flatMap { _, value in
-                return value
+            throw MalformedCSVError(message: message)
+        }
+        
+        let rows = importerTable.rows
+        
+        return AsyncStream<User> { continuation in
+            Task {
+                for row in rows {
+                    let firstName = row[safe: firstNameIndex] as? String
+                    let surName = row[safe: surNameIndex] as? String
+                    let issueCount = row[safe: issueCountIndex] as? Int
+                    let dateOfBirthString = row[safe: dateOfBirthIndex] as? String
+                    var dateOfBirth: Date?
+                    if let dateOfBirthString = dateOfBirthString {
+                        dateOfBirth = self.dateFormatter.date(from: dateOfBirthString)
+                    }
+                    
+                    let user = User(firstName: firstName, surName: surName, issueCount: issueCount ?? 0, dateOfBirth: dateOfBirth)
+                    continuation.yield(user)
+                }
+                continuation.finish()
             }
-            
-            return .success(sortedUsers)
-            
-        } catch {
-            return .failure(error)
         }
     }
     

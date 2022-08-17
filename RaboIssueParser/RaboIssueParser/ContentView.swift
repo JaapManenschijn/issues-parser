@@ -15,26 +15,29 @@ struct ContentView: View {
     @ObservedObject var viewModel: ContentViewModel = ContentViewModel()
     
     var body: some View {
-        FileReader(types: [.commaSeparatedText], allowMultiple: true, result: $readResults, content: {
-            ZStack {
-                Text("Hello, world!")
-                    .padding()
+        ZStack(alignment: .center) {
+            VStack {
+                FileReader(types: [.commaSeparatedText], allowMultiple: true, result: $readResults, content: {
+                    Text("Hello, world!")
+                        .padding()
+                })
+                
+                Text("Number of users: \(viewModel.results.count)")
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        })
+        }
+        
         .onChange(of: readResults) { results in
             results.forEach { readResult in
                 print("result for \(readResult.url): \(readResult.result)")
                 switch readResult.result {
                 case .success(let data):
-                    viewModel.onParseCsv(data: data)
+                    Task {
+                        await viewModel.onParseCsv(data: data)
+                    }
                 default:
                     break
                 }
             }
-        }
-        .onChange(of: viewModel.results) { newValue in
-            print("got new users: \(newValue.count)")
         }
     }
 }
@@ -51,15 +54,19 @@ class ContentViewModel: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    func onParseCsv(data: Data) {
-        CSVParserPublisher(data: data)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
-            .sink { error in
-                print(error)
-            } receiveValue: { users in
-                self.results = users
+    func onParseCsv(data: Data) async {
+        results = []
+        
+        let parser = CSVParser(data: data)
+        do {
+            for await user in try parser.parse() {
+                await MainActor.run {
+                    results.append(user)
+                }
             }
-            .store(in: &cancellables)
+        }
+        catch let error {
+            print(error)
+        }
     }
 }
