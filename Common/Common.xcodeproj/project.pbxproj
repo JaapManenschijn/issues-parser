@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		642FC50428AB975C00A07DFE /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC50328AB975C00A07DFE /* Collection+Extensions.swift */; };
 		64C8132E28AA658800D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8132528AA658800D8366D /* Common.framework */; };
 		64C8133328AA658800D8366D /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8133228AA658800D8366D /* CommonTests.swift */; };
 		64C8133428AA658800D8366D /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C8132828AA658800D8366D /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		642FC50328AB975C00A07DFE /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		64C8132528AA658800D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C8132828AA658800D8366D /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		64C8132D28AA658800D8366D /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				64E8CCC928AB892700BB0DA3 /* String+Extensions.swift */,
+				642FC50328AB975C00A07DFE /* Collection+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64C8133F28AA65DB00D8366D /* LoadingView.swift in Sources */,
+				642FC50428AB975C00A07DFE /* Collection+Extensions.swift in Sources */,
 				64E8CCCA28AB892700BB0DA3 /* String+Extensions.swift in Sources */,
 				64C8134F28AA714200D8366D /* Style.swift in Sources */,
 			);
@@ -309,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -366,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
