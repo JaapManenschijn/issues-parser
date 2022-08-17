@@ -12,7 +12,6 @@ class FileReaderViewModel: ObservableObject {
     
     @Published var isPresented: Bool = false
     @Published private(set) var isProcessing: Bool = false
-    @Published private(set) var results: [FileReadResult] = []
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -22,22 +21,39 @@ class FileReaderViewModel: ObservableObject {
         isPresented = true
     }
     
-    func onFilesPicked(urls: [URL]) {
+    func onFilesPicked(urls: [URL]) async throws -> [FileReadResult] {
         isProcessing = true
+        try await Task.sleep(nanoseconds: 1_000_000_000)
+        let results = await readDataFromFiles(urls: urls)
+        self.isProcessing = false
         
-        Publishers.MergeMany(urls.map({ URL in
-            FileReadPublisher(fileURL: URL)
-        }))
-        .collect()
-        .delay(for: .seconds(1), scheduler: RunLoop.main)
-        .subscribe(on: DispatchQueue.global(qos: .background))
-        .receive(on: DispatchQueue.main)
-        .sink { [weak self] output in
-            guard let self = self else { return }
+        return results
+    }
+    
+    private func readDataFromFiles(urls: [URL]) async -> [FileReadResult] {
+        return await withTaskGroup(of: FileReadResult.self) { group in
+            var results: [FileReadResult] = []
             
-            self.isProcessing = false
-            self.results = output
+            for url in urls {
+                group.addTask {
+                    return await self.readFileData(url: url)
+                }
+            }
+            
+            for await readResult in group {
+                results.append(readResult)
+            }
+            
+            return results
         }
-        .store(in: &cancellables)
+    }
+    
+    private func readFileData(url: URL) async -> FileReadResult {
+        do {
+            let data = try Data(contentsOf: url)
+            return FileReadResult(url: url, result: .success(data))
+        } catch let error {
+            return FileReadResult(url: url, result: .failure(error))
+        }
     }
 }

@@ -15,8 +15,6 @@
 		64C8131628AA62F100D8366D /* FileReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131528AA62F100D8366D /* FileReaderViewModel.swift */; };
 		64C8131A28AA646500D8366D /* FileReadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131928AA646500D8366D /* FileReadResult.swift */; };
 		64C8134228AA66BF00D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134128AA66BF00D8366D /* Common.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		64C8135428AA795F00D8366D /* FileReadSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135328AA795F00D8366D /* FileReadSubscription.swift */; };
-		64C8135628AA7BCA00D8366D /* FileReadPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135528AA7BCA00D8366D /* FileReadPublisher.swift */; };
 		64C8135A28AA901400D8366D /* FileReaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +38,6 @@
 		64C8131528AA62F100D8366D /* FileReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModel.swift; sourceTree = "<group>"; };
 		64C8131928AA646500D8366D /* FileReadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadResult.swift; sourceTree = "<group>"; };
 		64C8134128AA66BF00D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C8135328AA795F00D8366D /* FileReadSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadSubscription.swift; sourceTree = "<group>"; };
-		64C8135528AA7BCA00D8366D /* FileReadPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadPublisher.swift; sourceTree = "<group>"; };
 		64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModelTests.swift; sourceTree = "<group>"; };
 		64C8139A28AA95AB00D8366D /* TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -88,7 +84,6 @@
 		64C812F628AA459400D8366D /* FileReader */ = {
 			isa = PBXGroup;
 			children = (
-				64C8135228AA794E00D8366D /* Util */,
 				64C8131828AA645700D8366D /* Model */,
 				64C8131028AA4C5A00D8366D /* UI */,
 				64C812F728AA459400D8366D /* FileReader.h */,
@@ -154,15 +149,6 @@
 				64C8134128AA66BF00D8366D /* Common.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		64C8135228AA794E00D8366D /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				64C8135328AA795F00D8366D /* FileReadSubscription.swift */,
-				64C8135528AA7BCA00D8366D /* FileReadPublisher.swift */,
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,10 +260,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C8135628AA7BCA00D8366D /* FileReadPublisher.swift in Sources */,
 				64C8130F28AA4C4C00D8366D /* FileReader.swift in Sources */,
 				64C8131A28AA646500D8366D /* FileReadResult.swift in Sources */,
-				64C8135428AA795F00D8366D /* FileReadSubscription.swift in Sources */,
 				64C8131428AA4D8D00D8366D /* DocumentPickerRepresentable.swift in Sources */,
 				64C812F928AA459400D8366D /* FileReader.docc in Sources */,
 				64C8131628AA62F100D8366D /* FileReaderViewModel.swift in Sources */,

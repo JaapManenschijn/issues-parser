@@ -46,11 +46,10 @@ public struct FileReader<Content: View>: View {
             }
             .sheet(isPresented: $viewModel.isPresented) {
                 DocumentPickerRepresentable(types: types, allowMultiple: allowMultiple) { urls in
-                    viewModel.onFilesPicked(urls: urls)
+                    Task {
+                        result = try await viewModel.onFilesPicked(urls: urls)
+                    }
                 }
-            }
-            .onChange(of: viewModel.results) { newValue in
-                result = newValue
             }
     }
 }

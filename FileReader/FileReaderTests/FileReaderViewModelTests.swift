@@ -45,76 +45,55 @@ class FileReaderViewModelTests: XCTestCase {
         XCTAssertEqual(counter, 1)
     }
 
-    func testProcessingFalseAfterFilesPicker() throws {
+    func testProcessingFalseAfterFilesPicker() async throws {
         viewModel.onButtonAction()
         XCTAssertTrue(viewModel.isPresented)
         
-        let expect = expectation(description: "results")
-        viewModel.$results
-            .dropFirst()
-            .sink { _ in
-                expect.fulfill()
-            }
-            .store(in: &cancellables)
-        
-        viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
-        wait(for: [expect], timeout: 10)
+        _ = try await viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
         XCTAssertFalse(viewModel.isProcessing)
     }
     
-    func testProcessingTrueOnFilesPicked() throws {
+    func testProcessingTrueOnFilesPicked() async throws {
         viewModel.$isProcessing
             .dropFirst()
+            .first()
             .sink { newValue in
                 XCTAssertTrue(newValue)
             }
             .store(in: &cancellables)
-        viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
+        _ = try await viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
     }
     
-    func testErrorReadResult() throws {
+    func testErrorReadResult() async throws {
         var didReceiveError = false
         
-        let expect = expectation(description: "results")
-        viewModel.$results
-            .dropFirst()
-            .sink { results in
-                if let first = results.first {
-                    switch first.result {
-                    case .failure(_):
-                        didReceiveError = true
-                    default:
-                        break
-                    }
-                }
-                expect.fulfill()
+        let results = try await viewModel.onFilesPicked(urls: [URL(string: "file:///non_existing_file.pdf")!])
+        
+        if let first = results.first {
+            switch first.result {
+            case .failure(_):
+                didReceiveError = true
+            default:
+                break
             }
-            .store(in: &cancellables)
-        viewModel.onFilesPicked(urls: [URL(string: "file:///non_existing_file.pdf")!])
-        wait(for: [expect], timeout: 10)
+        }
+        
         XCTAssertTrue(didReceiveError)
     }
     
-    func testSuccessReadResult() throws {
+    func testSuccessReadResult() async throws {
         var didReceiveError = false
-        
-        let expect = expectation(description: "results")
-        viewModel.$results
-            .dropFirst()
-            .sink { results in
-                if let first = results.first {
-                    switch first.result {
-                    case .failure(_):
-                        didReceiveError = true
-                    default:
-                        break
-                    }
-                }
-                expect.fulfill()
+       
+        let results = try await viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
+        if let first = results.first {
+            switch first.result {
+            case .failure(_):
+                didReceiveError = true
+            default:
+                break
             }
-            .store(in: &cancellables)
-        viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
-        wait(for: [expect], timeout: 10)
+        }
+        
         XCTAssertFalse(didReceiveError)
     }
 }
