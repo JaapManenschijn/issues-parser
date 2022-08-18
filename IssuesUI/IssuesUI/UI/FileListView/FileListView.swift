@@ -26,9 +26,13 @@ struct FileListView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                     
-                    successList
+                    getFileList(header: "file_list_success_header".localized(),
+                                files: viewModel.succesfullReads,
+                                showChevron: true)
                     
-                    errorList
+                    getFileList(header: "file_list_error_header".localized(),
+                                files: viewModel.errorReads,
+                                showChevron: false)
                 }
             }
         }
@@ -42,18 +46,16 @@ struct FileListView: View {
         }
     }
     
-    @ViewBuilder var errorList: some View {
-        let errorReads = viewModel.errorReads
-        
-        if !errorReads.isEmpty {
+    @ViewBuilder func getFileList(header: String, files: [FileModel], showChevron: Bool) -> some View {
+        if !files.isEmpty {
             LazyVStack(spacing: 0) {
-                HeaderView(title: "file_list_error_header".localized())
+                HeaderView(title: header)
                 
-                ForEach(viewModel.errorReads, id: \.id) { file in
+                ForEach(files, id: \.id) { file in
                     Button {
                         viewModel.onRowClickAction(file.id)
                     } label: {
-                        FileRow(text: file.name, showChevron: false)
+                        FileRow(text: file.name, showChevron: showChevron)
                     }
 
                     
@@ -62,22 +64,6 @@ struct FileListView: View {
             .padding(.bottom, -1) // For some reason, there is extra padding on the bottom of the LazyVStack
             .background(Color.headerBackground)
         }
-    }
-    
-    @ViewBuilder var successList: some View {
-        LazyVStack(spacing: 0) {
-            HeaderView(title: "file_list_success_header".localized())
-            
-            ForEach(viewModel.succesfullReads, id: \.id) { file in
-                Button {
-                    viewModel.onRowClickAction(file.id)
-                } label: {
-                    FileRow(text: file.name, showChevron: true)
-                }
-            }
-        }
-        .padding(.bottom, -1) // For some reason, there is extra padding on the bottom of the LazyVStack
-        .background(Color.headerBackground)
     }
 }
 
