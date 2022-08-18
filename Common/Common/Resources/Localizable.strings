@@ -7,3 +7,6 @@
 */
 
 "processing" = "Processing...";
+"select_file_title" = "Select files";
+"select_file_text" = "To get started, press the button below to select one or more CSV files to open";
+"select_file_button" = "Select file(s)";

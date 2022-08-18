@@ -6,12 +6,39 @@
 //
 
 import SwiftUI
+import IssuesUI
 
 @main
 struct RaboIssueParserApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            getView()
+                .onAppear(perform: {
+                    setupAppearance()
+                })
+        }
+    }
+    
+    private func getView() -> some View {
+        return IssuesRouter.mainView
+    }
+    
+    private func setupAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .navigationBackground
+
+        let attrs: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.titleText
+        ]
+
+        appearance.titleTextAttributes = attrs
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
         }
     }
 }
