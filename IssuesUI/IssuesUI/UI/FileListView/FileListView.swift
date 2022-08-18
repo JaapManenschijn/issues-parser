@@ -33,6 +33,11 @@ struct FileListView: View {
                     getFileList(header: "file_list_error_header".localized(),
                                 files: viewModel.errorReads,
                                 showChevron: false)
+                    
+                    NavigationLink(
+                        destination: FileContentView(data: viewModel.selectedFileData, fileName: viewModel.selectedFileName),
+                        isActive: $viewModel.shouldNavigate) { EmptyView()
+                        }
                 }
             }
         }

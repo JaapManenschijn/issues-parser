@@ -7,9 +7,10 @@
 
 import Foundation
 
-public struct User: Equatable {
-    let firstName: String?
-    let surName: String?
-    let issueCount: Int
-    let dateOfBirth: Date?
+public struct User: Equatable, Hashable {
+    public let id: UUID = UUID()
+    public let firstName: String?
+    public let surName: String?
+    public let issueCount: Int
+    public let dateOfBirth: Date?
 }

@@ -15,8 +15,11 @@ struct FileModel {
 
 class FileListViewModel: ObservableObject {
     @Published var showingAlert = false
+    @Published var shouldNavigate: Bool = false
     
     private let files: [FileReadResult]
+    var selectedFileData: Data?
+    var selectedFileName: String?
     
     var succesfullReads: [FileModel] {
         getFileModels(successfullReads: true)
@@ -51,7 +54,9 @@ class FileListViewModel: ObservableObject {
             switch file.result {
             case .success(let data):
                 // pass the data to next screen?
-                break
+                selectedFileName = file.url.lastPathComponent
+                selectedFileData = data
+                shouldNavigate = true
             case .failure(_):
                 showingAlert = true
             }

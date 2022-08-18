@@ -17,6 +17,10 @@ public extension Color {
         Color("Colors/Text/Primary", bundle: Bundle(for: LocalResources.self))
     }
     
+    static var secondaryText: Color {
+        Color("Colors/Text/Secondary", bundle: Bundle(for: LocalResources.self))
+    }
+    
     static var titleText: Color {
         Color("Colors/Text/Title", bundle: Bundle(for: LocalResources.self))
     }
@@ -35,6 +39,10 @@ public extension Color {
     
     static var primaryBackground: Color {
         Color("Colors/Background/Primary", bundle: Bundle(for: LocalResources.self))
+    }
+    
+    static var secondaryBackground: Color {
+        Color("Colors/Background/Secondary", bundle: Bundle(for: LocalResources.self))
     }
     
     static var buttonBackground: Color {
