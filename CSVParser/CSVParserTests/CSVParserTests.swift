@@ -24,6 +24,13 @@ class CSVParserTests: XCTestCase {
     "Pe,tra","Boersma",1,"2001-04-20T00:00:00"
     """
     
+    let properCsvEmptyFields = """
+    "First name","Sur name","Issue count","Date of birth"
+    "Theo",,5,"1978-01-02T00:00:00"
+    ,"de Vries",7,"1950-11-12T00:00:00"
+    "Petra","Boersma",,"2001-04-20T00:00:00"
+    """
+    
     let malformedCsvWrongColumns = """
     "firstname","lastname","issues","dob"
     "Theo","Jansen",5,"1978-01-02T00:00:00"
@@ -53,10 +60,10 @@ class CSVParserTests: XCTestCase {
     func testParseProperCsv() async throws {
         let data = properCsv.data(using: .utf8)!
         
-        let parser = CSVParser(data: data)
+        let parser = try CSVParser(data: data)
         var users: [User] = []
         
-        for await user in try parser.parse() {
+        for await user in parser.getUsers(limit: 10000, offset: 0) {
             users.append(user)
         }
         
@@ -69,13 +76,34 @@ class CSVParserTests: XCTestCase {
         }
     }
     
+    func testParseProperCsvEmptyFields() async throws {
+        let data = properCsvEmptyFields.data(using: .utf8)!
+        
+        let parser = try CSVParser(data: data)
+        var users: [User] = []
+        
+        for await user in parser.getUsers(limit: 10000, offset: 0) {
+            users.append(user)
+        }
+        
+        XCTAssertEqual(3, users.count)
+        if #available(iOS 15, *) {
+            XCTAssertNil(users[0].surName)
+            XCTAssertNil(users[1].firstName)
+        } else {
+            XCTAssertEqual("", users[0].surName)
+            XCTAssertEqual("", users[1].firstName)
+        }
+        XCTAssertEqual(0, users[2].issueCount)
+    }
+    
     func testParseProperCsvWithCommas() async throws {
         let data = properCsvWithCommas.data(using: .utf8)!
         
-        let parser = CSVParser(data: data)
+        let parser = try CSVParser(data: data)
         var users: [User] = []
         
-        for await user in try parser.parse() {
+        for await user in parser.getUsers(limit: 10000, offset: 0) {
             users.append(user)
         }
         
@@ -89,11 +117,12 @@ class CSVParserTests: XCTestCase {
     func testMalformedCsv() async throws {
         let data = malformedCsvWrongColumns.data(using: .utf8)!
         
-        let parser = CSVParser(data: data)
         var users: [User] = []
         
         do {
-            for await user in try parser.parse() {
+            let parser = try CSVParser(data: data)
+            
+            for await user in parser.getUsers(limit: 10000, offset: 0) {
                 users.append(user)
             }
         } catch let error {
@@ -105,11 +134,12 @@ class CSVParserTests: XCTestCase {
     func testWrongDelimiter() async throws {
         let data = malformedCsvWrongDelimiter.data(using: .utf8)!
         
-        let parser = CSVParser(data: data)
         var users: [User] = []
         
         do {
-            for await user in try parser.parse() {
+            let parser = try CSVParser(data: data)
+            
+            for await user in parser.getUsers(limit: 10000, offset: 0) {
                 users.append(user)
             }
         } catch let error {
@@ -122,15 +152,69 @@ class CSVParserTests: XCTestCase {
         if let url = testBundle.url(forResource: "bigCsv", withExtension: "csv") {
             let data = try Data(contentsOf: url)
             
-            let parser = CSVParser(data: data)
+            let parser = try CSVParser(data: data)
             var users: [User] = []
             
-            for await user in try parser.parse() {
+            for await user in parser.getUsers(limit: 200000, offset: 0) {
                 users.append(user)
             }
             
             XCTAssertEqual(200000, users.count)
         }
+    }
+    
+    func testPagination() async throws {
+        let data = properCsv.data(using: .utf8)!
+        
+        let parser = try CSVParser(data: data)
+        var users: [User] = []
+        
+        for index in 1..<4 {
+            for await user in parser.getUsers(limit: 1, offset: users.count) {
+                users.append(user)
+            }
+            
+            XCTAssertEqual(index, users.count)
+        }
+    }
+    
+    func testPaginationOutsideBounds() async throws {
+        let data = properCsv.data(using: .utf8)!
+        
+        let parser = try CSVParser(data: data)
+        var users: [User] = []
+        
+        for await user in parser.getUsers(limit: 20, offset: 100) {
+            users.append(user)
+        }
+        
+        XCTAssertEqual(0, users.count)
+    }
+    
+    func testPaginationNegativeLimit() async throws {
+        let data = properCsv.data(using: .utf8)!
+        
+        let parser = try CSVParser(data: data)
+        var users: [User] = []
+        
+        for await user in parser.getUsers(limit: -1, offset: 0) {
+            users.append(user)
+        }
+        
+        XCTAssertEqual(0, users.count)
+    }
+    
+    func testPaginationNegativeOffset() async throws {
+        let data = properCsv.data(using: .utf8)!
+        
+        let parser = try CSVParser(data: data)
+        var users: [User] = []
+        
+        for await user in parser.getUsers(limit: -1, offset: 0) {
+            users.append(user)
+        }
+        
+        XCTAssertEqual(0, users.count)
     }
     
 }
