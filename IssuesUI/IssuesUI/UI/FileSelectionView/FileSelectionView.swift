@@ -20,6 +20,11 @@ struct FileSelectionView: View {
                         .ignoresSafeArea()
                     
                     VStack(alignment: .center, spacing: 24) {
+                        NavigationLink(
+                            destination: FileListView(files: viewModel.fileReaderResults),
+                            isActive: $viewModel.shouldNavigate) { EmptyView()
+                            }
+                        
                         Text("select_file_text".localized())
                             .multilineTextAlignment(.center)
                         
@@ -42,8 +47,8 @@ struct FileSelectionView: View {
                                 .fixedSize()
                                 .contentShape(Rectangle())
                                 .cornerRadius(8)
-                            
-                        }
+                                
+                            }
                     }
                     .frame(maxHeight: .infinity)
                     .padding()
@@ -53,6 +58,7 @@ struct FileSelectionView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .accentColor(.buttonText)
     }
 }
 

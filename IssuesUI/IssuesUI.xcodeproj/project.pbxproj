@@ -17,6 +17,10 @@
 		64D1DD5228AE1B8E00971526 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64D1DD5028AE1B8E00971526 /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64D1DD5428AE1EE400971526 /* IssuesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5328AE1EE400971526 /* IssuesRouter.swift */; };
 		64D1DD5628AE234A00971526 /* FileSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5528AE234A00971526 /* FileSelectionViewModel.swift */; };
+		64D1DD5928AE3B7F00971526 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5828AE3B7F00971526 /* FileListView.swift */; };
+		64D1DD5B28AE3B8A00971526 /* FileListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5A28AE3B8A00971526 /* FileListViewModel.swift */; };
+		64D1DD5E28AE562900971526 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5D28AE562900971526 /* HeaderView.swift */; };
+		64D1DD6028AE56DC00971526 /* FileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD5F28AE56DC00971526 /* FileRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +48,10 @@
 		64D1DD5028AE1B8E00971526 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D1DD5328AE1EE400971526 /* IssuesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesRouter.swift; sourceTree = "<group>"; };
 		64D1DD5528AE234A00971526 /* FileSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSelectionViewModel.swift; sourceTree = "<group>"; };
+		64D1DD5828AE3B7F00971526 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
+		64D1DD5A28AE3B8A00971526 /* FileListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewModel.swift; sourceTree = "<group>"; };
+		64D1DD5D28AE562900971526 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		64D1DD5F28AE56DC00971526 /* FileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +98,8 @@
 		64D1DD4128AE1B2700971526 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				64D1DD5C28AE560C00971526 /* Components */,
+				64D1DD5728AE3B4000971526 /* FileListView */,
 				64D1DD4228AE1B3900971526 /* FileSelectionView */,
 			);
 			path = UI;
@@ -112,6 +122,24 @@
 				64D1DD4A28AE1B6900971526 /* FileReader.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64D1DD5728AE3B4000971526 /* FileListView */ = {
+			isa = PBXGroup;
+			children = (
+				64D1DD5828AE3B7F00971526 /* FileListView.swift */,
+				64D1DD5A28AE3B8A00971526 /* FileListViewModel.swift */,
+			);
+			path = FileListView;
+			sourceTree = "<group>";
+		};
+		64D1DD5C28AE560C00971526 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				64D1DD5D28AE562900971526 /* HeaderView.swift */,
+				64D1DD5F28AE56DC00971526 /* FileRow.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,7 +223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D1DD5928AE3B7F00971526 /* FileListView.swift in Sources */,
+				64D1DD6028AE56DC00971526 /* FileRow.swift in Sources */,
+				64D1DD5E28AE562900971526 /* HeaderView.swift in Sources */,
 				64D1DD5628AE234A00971526 /* FileSelectionViewModel.swift in Sources */,
+				64D1DD5B28AE3B8A00971526 /* FileListViewModel.swift in Sources */,
 				64D1DD5428AE1EE400971526 /* IssuesRouter.swift in Sources */,
 				64D1DD4428AE1B4F00971526 /* FileSelectionView.swift in Sources */,
 			);

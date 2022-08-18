@@ -6,7 +6,14 @@
   
 */
 
+"ok" = "Ok";
+"generic_error_title" = "Oops!";
 "processing" = "Processing...";
 "select_file_title" = "Select files";
-"select_file_text" = "To get started, press the button below to select one or more CSV files to open";
+"select_file_text" = "To get started, press the button below to select one or more CSV files to read";
 "select_file_button" = "Select file(s)";
+"file_list_title" = "Pick a file";
+"file_list_success_header" = "Succesfull reads";
+"file_list_error_header" = "Unsuccesfull reads";
+"file_list_header_text" = "We've tried to read the contents of your selected files.\n\nTo view the contents of a file, just pick one from the succesfull reads section!";
+"file_list_error_text" = "We encountered an error while trying to read the file. Please navigate back and try again.";

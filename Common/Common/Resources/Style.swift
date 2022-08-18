@@ -29,6 +29,10 @@ public extension Color {
         Color("Colors/Text/Alert", bundle: Bundle(for: LocalResources.self))
     }
     
+    static var headerText: Color {
+        Color("Colors/Text/Header", bundle: Bundle(for: LocalResources.self))
+    }
+    
     static var primaryBackground: Color {
         Color("Colors/Background/Primary", bundle: Bundle(for: LocalResources.self))
     }
@@ -47,6 +51,10 @@ public extension Color {
     
     static var alertBackground: Color {
         Color("Colors/Background/Alert", bundle: Bundle(for: LocalResources.self))
+    }
+    
+    static var headerBackground: Color {
+        Color("Colors/Background/Header", bundle: Bundle(for: LocalResources.self))
     }
 }
 
