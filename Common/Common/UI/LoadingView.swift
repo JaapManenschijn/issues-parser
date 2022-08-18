@@ -13,6 +13,10 @@ public struct LoadingView<Content: View>: View {
     var isShowing: Bool
     let title: String
     var content: LoadingViewContent
+    private let width: CGFloat = 200
+    private var height: CGFloat {
+        width * 0.66
+    }
     
     public init(
         isShowing: Bool,
@@ -25,27 +29,24 @@ public struct LoadingView<Content: View>: View {
     }
     
     public var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .center) {
-                
-                self.content()
-                    .disabled(self.isShowing)
-                    .blur(radius: self.isShowing ? 3 : 0)
-                
-                VStack {
-                    Text(title)
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .alertText))
-                }
-                .frame(width: geometry.size.width / 2,
-                       height: geometry.size.height / 5)
-                .background(Color.alertBackground)
-                .foregroundColor(Color.alertText)
-                .cornerRadius(20)
-                .shadow(color: Color.alertShadow, radius: 3, x: 0, y: 0)
-                .opacity(self.isShowing ? 1 : 0)
-                
+        ZStack(alignment: .center) {
+            
+            self.content()
+                .disabled(self.isShowing)
+                .blur(radius: self.isShowing ? 3 : 0)
+            
+            VStack {
+                Text(title)
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .alertText))
             }
+            .frame(width: width, height: height)
+            .background(Color.alertBackground)
+            .foregroundColor(Color.alertText)
+            .cornerRadius(20)
+            .shadow(color: Color.alertShadow, radius: 3, x: 0, y: 0)
+            .opacity(self.isShowing ? 1 : 0)
+            
         }
     }
 }

@@ -10,7 +10,7 @@ import Common
 import FileReader
 
 struct FileSelectionView: View {
-    @ObservedObject var viewModel: FileSelectionViewModel = FileSelectionViewModel()
+    @StateObject var viewModel: FileSelectionViewModel = FileSelectionViewModel()
     
     var body: some View {
         NavigationView {
@@ -28,13 +28,20 @@ struct FileSelectionView: View {
                             allowMultiple: true,
                             result: $viewModel.fileReaderResults,
                             isLoading: $viewModel.isLoading) {
-                            HStack {
-                                Image(systemName: "folder.badge.plus")
-                                Text("select_file_button".localized())
-                            }
-                            .frame(maxWidth: .infinity)
-                            .contentShape(Rectangle())
-                            .cornerRadius(8)
+                                ZStack {
+                                    Color.buttonBackground
+                                    
+                                    HStack {
+                                        Image(systemName: "folder.badge.plus")
+                                        Text("select_file_button".localized())
+                                    }
+                                    .foregroundColor(.buttonText)
+                                    .padding()
+                                }
+                                
+                                .fixedSize()
+                                .contentShape(Rectangle())
+                                .cornerRadius(8)
                             
                         }
                     }
@@ -44,8 +51,8 @@ struct FileSelectionView: View {
                 .navigationTitle("select_file_title".localized())
                 .navigationBarTitleDisplayMode(.inline)
             }
-            
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

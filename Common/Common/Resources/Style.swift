@@ -33,6 +33,10 @@ public extension Color {
         Color("Colors/Background/Primary", bundle: Bundle(for: LocalResources.self))
     }
     
+    static var buttonBackground: Color {
+        Color("Colors/Background/Button", bundle: Bundle(for: LocalResources.self))
+    }
+    
     static var alertShadow: Color {
         Color("Colors/Shadow/Alert", bundle: Bundle(for: LocalResources.self))
     }
