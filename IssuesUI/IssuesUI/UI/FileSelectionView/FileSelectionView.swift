@@ -14,30 +14,37 @@ struct FileSelectionView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color.primaryBackground
-                    .ignoresSafeArea()
-                
-                VStack(alignment: .center) {
-                    Text("select_file_text".localized())
-                        .multilineTextAlignment(.center)
+            LoadingView(isShowing: viewModel.isLoading, title: "processing".localized()) {
+                ZStack {
+                    Color.primaryBackground
+                        .ignoresSafeArea()
                     
-                    FileReader(types: [.commaSeparatedText], allowMultiple: true, result: $viewModel.fileReaderResults) {
-                        HStack {
-                            Image(systemName: "folder.badge.plus")
-                            Text("select_file_button".localized())
-                        }
-                        .frame(maxWidth: .infinity)
-                        .contentShape(Rectangle())
-                        .cornerRadius(8)
+                    VStack(alignment: .center, spacing: 24) {
+                        Text("select_file_text".localized())
+                            .multilineTextAlignment(.center)
                         
+                        FileReader(
+                            types: [.commaSeparatedText],
+                            allowMultiple: true,
+                            result: $viewModel.fileReaderResults,
+                            isLoading: $viewModel.isLoading) {
+                            HStack {
+                                Image(systemName: "folder.badge.plus")
+                                Text("select_file_button".localized())
+                            }
+                            .frame(maxWidth: .infinity)
+                            .contentShape(Rectangle())
+                            .cornerRadius(8)
+                            
+                        }
                     }
+                    .frame(maxHeight: .infinity)
+                    .padding()
                 }
-                .frame(maxHeight: .infinity)
-                .padding()
+                .navigationTitle("select_file_title".localized())
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("select_file_title".localized())
-            .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
 }

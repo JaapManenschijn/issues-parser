@@ -35,14 +35,14 @@ public struct LoadingView<Content: View>: View {
                 VStack {
                     Text(title)
                     ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
+                        .progressViewStyle(CircularProgressViewStyle(tint: .alertText))
                 }
                 .frame(width: geometry.size.width / 2,
                        height: geometry.size.height / 5)
-                .background(Color.primaryBackground)
-                .foregroundColor(Color.primaryText)
+                .background(Color.alertBackground)
+                .foregroundColor(Color.alertText)
                 .cornerRadius(20)
-                .shadow(color: Color.primaryShadow, radius: 3, x: 0, y: 0)
+                .shadow(color: Color.alertShadow, radius: 3, x: 0, y: 0)
                 .opacity(self.isShowing ? 1 : 0)
                 
             }

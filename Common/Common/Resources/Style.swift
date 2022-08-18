@@ -25,16 +25,24 @@ public extension Color {
         Color("Colors/Text/Button", bundle: Bundle(for: LocalResources.self))
     }
     
+    static var alertText: Color {
+        Color("Colors/Text/Alert", bundle: Bundle(for: LocalResources.self))
+    }
+    
     static var primaryBackground: Color {
         Color("Colors/Background/Primary", bundle: Bundle(for: LocalResources.self))
     }
     
-    static var primaryShadow: Color {
-        Color("Colors/Shadow/Primary", bundle: Bundle(for: LocalResources.self))
+    static var alertShadow: Color {
+        Color("Colors/Shadow/Alert", bundle: Bundle(for: LocalResources.self))
     }
     
     static var navigationBackground: Color {
         Color("Colors/Background/Navigation", bundle: Bundle(for: LocalResources.self))
+    }
+    
+    static var alertBackground: Color {
+        Color("Colors/Background/Alert", bundle: Bundle(for: LocalResources.self))
     }
 }
 

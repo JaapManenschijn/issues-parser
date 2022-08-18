@@ -11,6 +11,7 @@ import FileReader
 class FileSelectionViewModel: ObservableObject {
     @Published var shouldNavigate: Bool = false
     @Published var fileReaderResults: [FileReadResult] = []
+    @Published var isLoading: Bool = false
     
     func onFilesPicked(urls: [URL]) {
         

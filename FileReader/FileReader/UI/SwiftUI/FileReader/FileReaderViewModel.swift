@@ -11,7 +11,6 @@ import Combine
 class FileReaderViewModel: ObservableObject {
     
     @Published var isPresented: Bool = false
-    @Published private(set) var isProcessing: Bool = false
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -21,13 +20,8 @@ class FileReaderViewModel: ObservableObject {
         isPresented = true
     }
     
-    func onFilesPicked(urls: [URL]) async throws -> [FileReadResult] {
-        isProcessing = true
-        try await Task.sleep(nanoseconds: 1_000_000_000)
-        let results = await readDataFromFiles(urls: urls)
-        self.isProcessing = false
-        
-        return results
+    func onFilesPicked(urls: [URL]) async throws -> [FileReadResult] {        
+        return await readDataFromFiles(urls: urls)
     }
     
     private func readDataFromFiles(urls: [URL]) async -> [FileReadResult] {
