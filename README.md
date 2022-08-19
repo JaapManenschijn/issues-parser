@@ -48,7 +48,8 @@ In addition to localization, it also provides some color information to be used 
 ## Tests
 As mentioned above, some of the modules contain unit tests. All unit tests are configured to be ran whenever the tests of the app module are being ran.
 
-In addition to this, a Github Action has been set up to run the tests automatically whenever a PR is opened & whenever a commit has been done to the `main` branch.
+In addition to this, a Github Action has been set up to run the tests automatically whenever a PR is opened & whenever a commit has been done to the `main` branch.  
+This action runs the test on an iOS 15.2 and an iOS 14.4 simulator to ensure both versions of the CSVParser are tested.
 
 
 
