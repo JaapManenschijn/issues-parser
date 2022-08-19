@@ -21,12 +21,13 @@ class PreIOS15Parser: ParserProtocol {
     }
     
     func getUsers(limit: Int, offset: Int) -> AsyncStream<User> {
+        // To 'simulate' pagination, we're using a subset of the array with all lines
         let rows = allLines[safe: offset..<(offset + limit)]
         
+        // Create the async stream that parses the requested rows into User objects
         return AsyncStream<User> { continuation in
             Task {
                 for row in rows {
-                    row.components(separatedBy: ",")
                     let rowColumns = self.sanitize(row.split(separator: ",", omittingEmptySubsequences: false).map({ String($0) }))
 
                     let firstName = rowColumns[safe: firstNameIndex!] as? String
@@ -61,7 +62,7 @@ class PreIOS15Parser: ParserProtocol {
         let headers = String(headerLine).split(separator: ",").map({ String($0) })
         let columns = sanitize(headers).map({ $0 as? String ?? "" })
         
-        // Find the correct indices for the expected columns. If not all columns are present, return an error
+        // Find the correct indices for the expected columns. If not all columns are present, throw an error
         firstNameIndex = columns.firstIndex(of: firstNameColumn)
         surNameIndex = columns.firstIndex(of: surNameColumn)
         issueCountIndex = columns.firstIndex(of: issueCountColumn)
@@ -86,6 +87,7 @@ class PreIOS15Parser: ParserProtocol {
             throw MalformedCSVError(message: message)
         }
         
+        // Save a reference to the array of all lines
         allLines = lines?.compactMap({ String($0) }) ?? []
     }
     

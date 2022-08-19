@@ -28,7 +28,7 @@ struct FileSelectionView: View {
                         Text("select_file_text".localized())
                             .multilineTextAlignment(.center)
                         
-                        FileReader(
+                        FileReaderButton(
                             types: [.commaSeparatedText],
                             allowMultiple: true,
                             result: $viewModel.fileReaderResults,

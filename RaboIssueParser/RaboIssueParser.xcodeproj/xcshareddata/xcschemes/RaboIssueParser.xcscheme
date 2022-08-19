@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64C812CB28AA271C00D8366D"
-               BuildableName = "RaboIssueParserTests.xctest"
-               BlueprintName = "RaboIssueParserTests"
-               ReferencedContainer = "container:RaboIssueParser.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "64C812FD28AA459500D8366D"
                BuildableName = "FileReaderTests.xctest"
                BlueprintName = "FileReaderTests"
@@ -56,6 +46,16 @@
                BuildableName = "CSVParserTests.xctest"
                BlueprintName = "CSVParserTests"
                ReferencedContainer = "container:../CSVParser/CSVParser.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "644A830028AF7C1D00861244"
+               BuildableName = "IssuesUITests.xctest"
+               BlueprintName = "IssuesUITests"
+               ReferencedContainer = "container:../IssuesUI/IssuesUI.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

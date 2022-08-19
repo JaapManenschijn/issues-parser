@@ -32,7 +32,7 @@ struct DocumentPickerRepresentable: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {
-        // Noop
+        // We don't actually have anything to update, so we can ignore this
     }
     
     func makeCoordinator() -> Coordinator {

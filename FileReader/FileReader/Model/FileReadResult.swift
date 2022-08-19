@@ -8,6 +8,11 @@
 import Foundation
 
 public struct FileReadResult: Equatable {
+    public init(url: URL, result: Result<Data, Error>) {
+        self.url = url
+        self.result = result
+    }
+    
     public static func == (lhs: FileReadResult, rhs: FileReadResult) -> Bool {
         return lhs.uuid == rhs.uuid
     }

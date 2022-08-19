@@ -10,11 +10,11 @@ import Combine
 @testable import FileReader
 
 class FileReaderViewModelTests: XCTestCase {
-    private var viewModel: FileReaderViewModel = FileReaderViewModel()
+    private var viewModel: FileReaderButtonViewModel = FileReaderButtonViewModel()
     private var cancellables = Set<AnyCancellable>()
 
     override func setUpWithError() throws {
-        viewModel = FileReaderViewModel()
+        viewModel = FileReaderButtonViewModel()
         cancellables = Set<AnyCancellable>()
     }
 

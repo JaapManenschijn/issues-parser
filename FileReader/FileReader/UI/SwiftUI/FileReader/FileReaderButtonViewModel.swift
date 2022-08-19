@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class FileReaderViewModel: ObservableObject {
+class FileReaderButtonViewModel: ObservableObject {
     
     @Published var isPresented: Bool = false
     
@@ -24,7 +24,11 @@ class FileReaderViewModel: ObservableObject {
         return await readDataFromFiles(urls: urls)
     }
     
+    /// Asynchronously reads data from the given file URLs.
+    /// - Parameter urls: The (file) URLs to read data from
+    /// - Returns: The array with results
     private func readDataFromFiles(urls: [URL]) async -> [FileReadResult] {
+        // Using a task group to read the files on parallel
         return await withTaskGroup(of: FileReadResult.self) { group in
             var results: [FileReadResult] = []
             
@@ -42,6 +46,9 @@ class FileReaderViewModel: ObservableObject {
         }
     }
     
+    /// Asynchronous read of the file data for the given URL
+    /// - Parameter url: The URL to read data from
+    /// - Returns: The read result
     private func readFileData(url: URL) async -> FileReadResult {
         do {
             let data = try Data(contentsOf: url)
