@@ -17,6 +17,7 @@ jobs:
           macos: ['macos-latest']
           scheme: ['RaboIssueParser']
           command: ['test']
+          platform: ['iOS']
       steps:
       - uses: maxim-lobanov/setup-xcode@v1.2.3
         with:
