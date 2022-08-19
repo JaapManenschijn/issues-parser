@@ -30,4 +30,4 @@ jobs:
           code-coverage: true
           verbosity: xcpretty
           upload-logs: always
-          workspace: RaboIssueParser.xcworkspace
+          workspace: ../RaboIssueParser.xcworkspace
