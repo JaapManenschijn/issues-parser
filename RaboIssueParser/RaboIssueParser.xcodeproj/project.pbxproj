@@ -10,7 +10,6 @@
 		642FC4FD28AB910500A07DFE /* CSVParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC4FC28AB910500A07DFE /* CSVParser.framework */; };
 		642FC4FE28AB910500A07DFE /* CSVParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC4FC28AB910500A07DFE /* CSVParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64C812C028AA271A00D8366D /* RaboIssueParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C812BF28AA271A00D8366D /* RaboIssueParserApp.swift */; };
-		64C812C228AA271A00D8366D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C812C128AA271A00D8366D /* ContentView.swift */; };
 		64C812C428AA271C00D8366D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C812C328AA271C00D8366D /* Assets.xcassets */; };
 		64C812C728AA271C00D8366D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C812C628AA271C00D8366D /* Preview Assets.xcassets */; };
 		64C812D128AA271C00D8366D /* RaboIssueParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C812D028AA271C00D8366D /* RaboIssueParserTests.swift */; };
@@ -18,6 +17,8 @@
 		64C8134628AA67F800D8366D /* FileReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134428AA67F800D8366D /* FileReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64C8134928AA6FB800D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134828AA6FB800D8366D /* Common.framework */; };
 		64C8134A28AA6FB800D8366D /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134828AA6FB800D8366D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		64D1DD4628AE1B5C00971526 /* IssuesUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D1DD4528AE1B5C00971526 /* IssuesUI.framework */; };
+		64D1DD4728AE1B5C00971526 /* IssuesUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64D1DD4528AE1B5C00971526 /* IssuesUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				64D1DD4728AE1B5C00971526 /* IssuesUI.framework in Embed Frameworks */,
 				642FC4FE28AB910500A07DFE /* CSVParser.framework in Embed Frameworks */,
 				64C8134628AA67F800D8366D /* FileReader.framework in Embed Frameworks */,
 				64C8134A28AA6FB800D8366D /* Common.framework in Embed Frameworks */,
@@ -50,7 +52,6 @@
 		642FC4FC28AB910500A07DFE /* CSVParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSVParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C812BC28AA271A00D8366D /* RaboIssueParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaboIssueParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C812BF28AA271A00D8366D /* RaboIssueParserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaboIssueParserApp.swift; sourceTree = "<group>"; };
-		64C812C128AA271A00D8366D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		64C812C328AA271C00D8366D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64C812C628AA271C00D8366D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		64C812CC28AA271C00D8366D /* RaboIssueParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaboIssueParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +59,7 @@
 		64C812E928AA321700D8366D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		64C8134428AA67F800D8366D /* FileReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C8134828AA6FB800D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64D1DD4528AE1B5C00971526 /* IssuesUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IssuesUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D1DD4628AE1B5C00971526 /* IssuesUI.framework in Frameworks */,
 				642FC4FD28AB910500A07DFE /* CSVParser.framework in Frameworks */,
 				64C8134528AA67F800D8366D /* FileReader.framework in Frameworks */,
 				64C8134928AA6FB800D8366D /* Common.framework in Frameworks */,
@@ -105,7 +108,6 @@
 			children = (
 				64C812E928AA321700D8366D /* Info.plist */,
 				64C812BF28AA271A00D8366D /* RaboIssueParserApp.swift */,
-				64C812C128AA271A00D8366D /* ContentView.swift */,
 				64C812C328AA271C00D8366D /* Assets.xcassets */,
 				64C812C528AA271C00D8366D /* Preview Content */,
 			);
@@ -131,6 +133,7 @@
 		64C8134328AA67F800D8366D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64D1DD4528AE1B5C00971526 /* IssuesUI.framework */,
 				642FC4FC28AB910500A07DFE /* CSVParser.framework */,
 				64C8134828AA6FB800D8366D /* Common.framework */,
 				64C8134428AA67F800D8366D /* FileReader.framework */,
@@ -238,7 +241,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C812C228AA271A00D8366D /* ContentView.swift in Sources */,
 				64C812C028AA271A00D8366D /* RaboIssueParserApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

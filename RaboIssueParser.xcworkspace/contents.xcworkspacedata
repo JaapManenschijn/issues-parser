@@ -8,6 +8,9 @@
       location = "container:"
       name = "Features">
       <FileRef
+         location = "group:IssuesUI/IssuesUI.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:CSVParser/CSVParser.xcodeproj">
       </FileRef>
       <FileRef

@@ -44,25 +44,6 @@ class FileReaderViewModelTests: XCTestCase {
         viewModel.onButtonAction()
         XCTAssertEqual(counter, 1)
     }
-
-    func testProcessingFalseAfterFilesPicker() async throws {
-        viewModel.onButtonAction()
-        XCTAssertTrue(viewModel.isPresented)
-        
-        _ = try await viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
-        XCTAssertFalse(viewModel.isProcessing)
-    }
-    
-    func testProcessingTrueOnFilesPicked() async throws {
-        viewModel.$isProcessing
-            .dropFirst()
-            .first()
-            .sink { newValue in
-                XCTAssertTrue(newValue)
-            }
-            .store(in: &cancellables)
-        _ = try await viewModel.onFilesPicked(urls: [URL(string: "https://www.google.com")!])
-    }
     
     func testErrorReadResult() async throws {
         var didReceiveError = false

@@ -21,6 +21,12 @@
 		642FC51B28ABE93700A07DFE /* DataFrame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */; };
 		642FC51C28ABF33300A07DFE /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51828ABE82B00A07DFE /* Array+Extensions.swift */; };
 		642FC51D28ABF33900A07DFE /* DataFrame+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */; };
+		64D1DD6328AE5EFC00971526 /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6228AE5EFC00971526 /* ParserProtocol.swift */; };
+		64D1DD6528AE5F9D00971526 /* IOS15Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6428AE5F9D00971526 /* IOS15Parser.swift */; };
+		64D1DD6728AE5FF800971526 /* PreIOS15Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6628AE5FF800971526 /* PreIOS15Parser.swift */; };
+		64D1DD6828AE6BC500971526 /* ParserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6228AE5EFC00971526 /* ParserProtocol.swift */; };
+		64D1DD6928AE6BC700971526 /* IOS15Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6428AE5F9D00971526 /* IOS15Parser.swift */; };
+		64D1DD6A28AE6BCA00971526 /* PreIOS15Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D1DD6628AE5FF800971526 /* PreIOS15Parser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +64,9 @@
 		642FC51528ABD49500A07DFE /* bigCsv.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bigCsv.csv; sourceTree = "<group>"; };
 		642FC51828ABE82B00A07DFE /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFrame+Extensions.swift"; sourceTree = "<group>"; };
+		64D1DD6228AE5EFC00971526 /* ParserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserProtocol.swift; sourceTree = "<group>"; };
+		64D1DD6428AE5F9D00971526 /* IOS15Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOS15Parser.swift; sourceTree = "<group>"; };
+		64D1DD6628AE5FF800971526 /* PreIOS15Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreIOS15Parser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +131,7 @@
 		642FC4F828AB8F5F00A07DFE /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				64D1DD6128AE5EEC00971526 /* Parsers */,
 				642FC4F928AB8F7200A07DFE /* CSVParser.swift */,
 			);
 			path = Parser;
@@ -150,6 +160,16 @@
 				642FC51A28ABE93700A07DFE /* DataFrame+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		64D1DD6128AE5EEC00971526 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				64D1DD6228AE5EFC00971526 /* ParserProtocol.swift */,
+				64D1DD6428AE5F9D00971526 /* IOS15Parser.swift */,
+				64D1DD6628AE5FF800971526 /* PreIOS15Parser.swift */,
+			);
+			path = Parsers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,9 +284,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D1DD6528AE5F9D00971526 /* IOS15Parser.swift in Sources */,
 				642FC50128AB955200A07DFE /* User.swift in Sources */,
 				642FC51928ABE82B00A07DFE /* Array+Extensions.swift in Sources */,
 				642FC51B28ABE93700A07DFE /* DataFrame+Extensions.swift in Sources */,
+				64D1DD6728AE5FF800971526 /* PreIOS15Parser.swift in Sources */,
+				64D1DD6328AE5EFC00971526 /* ParserProtocol.swift in Sources */,
 				642FC4FA28AB8F7200A07DFE /* CSVParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +300,10 @@
 			files = (
 				642FC51D28ABF33900A07DFE /* DataFrame+Extensions.swift in Sources */,
 				642FC4EE28AB8E8D00A07DFE /* CSVParserTests.swift in Sources */,
+				64D1DD6828AE6BC500971526 /* ParserProtocol.swift in Sources */,
 				642FC51C28ABF33300A07DFE /* Array+Extensions.swift in Sources */,
+				64D1DD6A28AE6BCA00971526 /* PreIOS15Parser.swift in Sources */,
+				64D1DD6928AE6BC700971526 /* IOS15Parser.swift in Sources */,
 				642FC4FB28AB8F7200A07DFE /* CSVParser.swift in Sources */,
 				642FC50228AB955200A07DFE /* User.swift in Sources */,
 			);
