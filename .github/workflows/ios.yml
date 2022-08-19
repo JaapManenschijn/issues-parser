@@ -8,7 +8,7 @@ on:
 
 jobs:
     run_tests:
-      name: ${{ matrix.command }} on  ${{ matrix.platform }} (xcode ${{ matrix.xcode }}, ${{ matrix.macos }})
+      name: ${{ matrix.command }} on  ${{ matrix.platform }} (xcode ${{ matrix.xcode }}, ${{ matrix.macos }}), iOS ${{ matrix.os }} Simulator
       runs-on: ${{ matrix.macos }} #os switching
       strategy:
         fail-fast: false #if 'true' then one failed job cancels all jobs remaining
