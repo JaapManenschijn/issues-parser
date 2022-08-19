@@ -17,17 +17,9 @@ jobs:
           macos: ['macos-latest']
           scheme: ['RaboIssueParser']
           command: ['test']
-          platform: ['iOS']
       steps:
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: ${{ matrix.xcode }}
-      - uses: mxcl/xcodebuild@v1
-        with:
-          platform: ${{ matrix.platform }}
-          scheme: ${{ matrix.scheme }}
-          action: ${{ matrix.command }}
-          code-coverage: true
-          verbosity: xcpretty
-          upload-logs: always
-          workspace: ../RaboIssueParser.xcworkspace
+      - uses: actions/checkout@v1
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app && /usr/bin/xcodebuild -version
+      - name: Run tests
+        run: xcodebuild ${{ matrix.command }} -scheme ${{ matrix.scheme }} -workspace RaboIssueParser.xcworkspace -destination 'platform=iOS Simulator,name=iPhone 12 Pro' | xcpretty && exit ${PIPESTATUS[0]}
