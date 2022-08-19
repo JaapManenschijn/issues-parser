@@ -16,7 +16,7 @@ class FileContentViewModel: ObservableObject {
     @Published var users: [UserModel] = []
     @Published var isLoading: Bool = false
     @Published var showingAlert = false
-    var hasMoreData: Bool = true
+    var hasMoreData: Bool = false
     var errorMessage: String = "file_content_error".localized()
     
     let fileName: String?
