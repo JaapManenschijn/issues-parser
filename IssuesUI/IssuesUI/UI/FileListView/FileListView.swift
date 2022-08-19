@@ -41,7 +41,7 @@ struct FileListView: View {
                 }
             }
         }
-        .navigationTitle("Pick file")
+        .navigationTitle("file_list_title".localized())
         .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $viewModel.showingAlert) {
             Alert(
@@ -62,8 +62,6 @@ struct FileListView: View {
                     } label: {
                         FileRow(text: file.name, showChevron: showChevron)
                     }
-
-                    
                 }
             }
             .padding(.bottom, -1) // For some reason, there is extra padding on the bottom of the LazyVStack

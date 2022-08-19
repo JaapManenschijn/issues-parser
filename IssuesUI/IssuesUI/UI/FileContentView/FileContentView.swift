@@ -30,7 +30,7 @@ struct FileContentView: View {
                         
                         if viewModel.hasMoreData {
                             ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: .primaryBackground))
+                                .progressViewStyle(CircularProgressViewStyle(tint: .secondaryBackground))
                                 .onAppear() {
                                     Task {
                                         await viewModel.loadNextPage()
@@ -61,6 +61,6 @@ struct FileContentView: View {
 
 struct FileContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FileContentView(data: "".data(using: .utf8)!, fileName: "Issues.csv")
+        FileContentView(data: "test".data(using: .utf8)!, fileName: "Issues.csv")
     }
 }

@@ -21,12 +21,12 @@ struct UserRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(user.name)
-                Text(user.birthDate)
+                Text(String(format: "user_name".localized(), user.name) )
+                Text(String(format: "user_dob".localized(), user.birthDate) )
             }
             Spacer()
             VStack {
-                Text("Issues:")
+                Text("user_issues".localized())
                 Text("\(user.issueCount)")
             }
         }

@@ -10,12 +10,12 @@
 		64C812F928AA459400D8366D /* FileReader.docc in Sources */ = {isa = PBXBuildFile; fileRef = 64C812F828AA459400D8366D /* FileReader.docc */; };
 		64C812FF28AA459500D8366D /* FileReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C812F428AA459400D8366D /* FileReader.framework */; };
 		64C8130528AA459500D8366D /* FileReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C812F728AA459400D8366D /* FileReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64C8130F28AA4C4C00D8366D /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8130E28AA4C4C00D8366D /* FileReader.swift */; };
+		64C8130F28AA4C4C00D8366D /* FileReaderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8130E28AA4C4C00D8366D /* FileReaderButton.swift */; };
 		64C8131428AA4D8D00D8366D /* DocumentPickerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131328AA4D8D00D8366D /* DocumentPickerRepresentable.swift */; };
-		64C8131628AA62F100D8366D /* FileReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131528AA62F100D8366D /* FileReaderViewModel.swift */; };
+		64C8131628AA62F100D8366D /* FileReaderButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131528AA62F100D8366D /* FileReaderButtonViewModel.swift */; };
 		64C8131A28AA646500D8366D /* FileReadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8131928AA646500D8366D /* FileReadResult.swift */; };
 		64C8134228AA66BF00D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134128AA66BF00D8366D /* Common.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		64C8135A28AA901400D8366D /* FileReaderViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */; };
+		64C8135A28AA901400D8366D /* FileReaderButtonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C8135928AA901400D8366D /* FileReaderButtonViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,12 +33,12 @@
 		64C812F728AA459400D8366D /* FileReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
 		64C812F828AA459400D8366D /* FileReader.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = FileReader.docc; sourceTree = "<group>"; };
 		64C812FE28AA459500D8366D /* FileReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FileReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C8130E28AA4C4C00D8366D /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		64C8130E28AA4C4C00D8366D /* FileReaderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderButton.swift; sourceTree = "<group>"; };
 		64C8131328AA4D8D00D8366D /* DocumentPickerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerRepresentable.swift; sourceTree = "<group>"; };
-		64C8131528AA62F100D8366D /* FileReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModel.swift; sourceTree = "<group>"; };
+		64C8131528AA62F100D8366D /* FileReaderButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderButtonViewModel.swift; sourceTree = "<group>"; };
 		64C8131928AA646500D8366D /* FileReadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReadResult.swift; sourceTree = "<group>"; };
 		64C8134128AA66BF00D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderViewModelTests.swift; sourceTree = "<group>"; };
+		64C8135928AA901400D8366D /* FileReaderButtonViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReaderButtonViewModelTests.swift; sourceTree = "<group>"; };
 		64C8139A28AA95AB00D8366D /* TestHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TestHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,7 +95,7 @@
 		64C8130228AA459500D8366D /* FileReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				64C8135928AA901400D8366D /* FileReaderViewModelTests.swift */,
+				64C8135928AA901400D8366D /* FileReaderButtonViewModelTests.swift */,
 			);
 			path = FileReaderTests;
 			sourceTree = "<group>";
@@ -128,8 +128,8 @@
 		64C8131728AA62FB00D8366D /* FileReader */ = {
 			isa = PBXGroup;
 			children = (
-				64C8130E28AA4C4C00D8366D /* FileReader.swift */,
-				64C8131528AA62F100D8366D /* FileReaderViewModel.swift */,
+				64C8130E28AA4C4C00D8366D /* FileReaderButton.swift */,
+				64C8131528AA62F100D8366D /* FileReaderButtonViewModel.swift */,
 			);
 			path = FileReader;
 			sourceTree = "<group>";
@@ -260,11 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C8130F28AA4C4C00D8366D /* FileReader.swift in Sources */,
+				64C8130F28AA4C4C00D8366D /* FileReaderButton.swift in Sources */,
 				64C8131A28AA646500D8366D /* FileReadResult.swift in Sources */,
 				64C8131428AA4D8D00D8366D /* DocumentPickerRepresentable.swift in Sources */,
 				64C812F928AA459400D8366D /* FileReader.docc in Sources */,
-				64C8131628AA62F100D8366D /* FileReaderViewModel.swift in Sources */,
+				64C8131628AA62F100D8366D /* FileReaderButtonViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64C8135A28AA901400D8366D /* FileReaderViewModelTests.swift in Sources */,
+				64C8135A28AA901400D8366D /* FileReaderButtonViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

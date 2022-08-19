@@ -7,29 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		642FC4FD28AB910500A07DFE /* CSVParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC4FC28AB910500A07DFE /* CSVParser.framework */; };
-		642FC4FE28AB910500A07DFE /* CSVParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 642FC4FC28AB910500A07DFE /* CSVParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64C812C028AA271A00D8366D /* RaboIssueParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C812BF28AA271A00D8366D /* RaboIssueParserApp.swift */; };
 		64C812C428AA271C00D8366D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C812C328AA271C00D8366D /* Assets.xcassets */; };
 		64C812C728AA271C00D8366D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64C812C628AA271C00D8366D /* Preview Assets.xcassets */; };
-		64C812D128AA271C00D8366D /* RaboIssueParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C812D028AA271C00D8366D /* RaboIssueParserTests.swift */; };
-		64C8134528AA67F800D8366D /* FileReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134428AA67F800D8366D /* FileReader.framework */; };
-		64C8134628AA67F800D8366D /* FileReader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134428AA67F800D8366D /* FileReader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		64C8134928AA6FB800D8366D /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134828AA6FB800D8366D /* Common.framework */; };
-		64C8134A28AA6FB800D8366D /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64C8134828AA6FB800D8366D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		64D1DD4628AE1B5C00971526 /* IssuesUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D1DD4528AE1B5C00971526 /* IssuesUI.framework */; };
 		64D1DD4728AE1B5C00971526 /* IssuesUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 64D1DD4528AE1B5C00971526 /* IssuesUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		64C812CD28AA271C00D8366D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64C812B428AA271A00D8366D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 64C812BB28AA271A00D8366D;
-			remoteInfo = RaboIssueParser;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		64C8134728AA67F800D8366D /* Embed Frameworks */ = {
@@ -39,9 +22,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				64D1DD4728AE1B5C00971526 /* IssuesUI.framework in Embed Frameworks */,
-				642FC4FE28AB910500A07DFE /* CSVParser.framework in Embed Frameworks */,
-				64C8134628AA67F800D8366D /* FileReader.framework in Embed Frameworks */,
-				64C8134A28AA6FB800D8366D /* Common.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,16 +29,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		642FC4FC28AB910500A07DFE /* CSVParser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CSVParser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C812BC28AA271A00D8366D /* RaboIssueParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaboIssueParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64C812BF28AA271A00D8366D /* RaboIssueParserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaboIssueParserApp.swift; sourceTree = "<group>"; };
 		64C812C328AA271C00D8366D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64C812C628AA271C00D8366D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		64C812CC28AA271C00D8366D /* RaboIssueParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RaboIssueParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C812D028AA271C00D8366D /* RaboIssueParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaboIssueParserTests.swift; sourceTree = "<group>"; };
 		64C812E928AA321700D8366D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		64C8134428AA67F800D8366D /* FileReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64C8134828AA6FB800D8366D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D1DD4528AE1B5C00971526 /* IssuesUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IssuesUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,16 +43,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64D1DD4628AE1B5C00971526 /* IssuesUI.framework in Frameworks */,
-				642FC4FD28AB910500A07DFE /* CSVParser.framework in Frameworks */,
-				64C8134528AA67F800D8366D /* FileReader.framework in Frameworks */,
-				64C8134928AA6FB800D8366D /* Common.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		64C812C928AA271C00D8366D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				64C812BE28AA271A00D8366D /* RaboIssueParser */,
-				64C812CF28AA271C00D8366D /* RaboIssueParserTests */,
 				64C812BD28AA271A00D8366D /* Products */,
 				64C8134328AA67F800D8366D /* Frameworks */,
 			);
@@ -98,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				64C812BC28AA271A00D8366D /* RaboIssueParser.app */,
-				64C812CC28AA271C00D8366D /* RaboIssueParserTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,21 +85,10 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		64C812CF28AA271C00D8366D /* RaboIssueParserTests */ = {
-			isa = PBXGroup;
-			children = (
-				64C812D028AA271C00D8366D /* RaboIssueParserTests.swift */,
-			);
-			path = RaboIssueParserTests;
-			sourceTree = "<group>";
-		};
 		64C8134328AA67F800D8366D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				64D1DD4528AE1B5C00971526 /* IssuesUI.framework */,
-				642FC4FC28AB910500A07DFE /* CSVParser.framework */,
-				64C8134828AA6FB800D8366D /* Common.framework */,
-				64C8134428AA67F800D8366D /* FileReader.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,24 +114,6 @@
 			productReference = 64C812BC28AA271A00D8366D /* RaboIssueParser.app */;
 			productType = "com.apple.product-type.application";
 		};
-		64C812CB28AA271C00D8366D /* RaboIssueParserTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 64C812E328AA271C00D8366D /* Build configuration list for PBXNativeTarget "RaboIssueParserTests" */;
-			buildPhases = (
-				64C812C828AA271C00D8366D /* Sources */,
-				64C812C928AA271C00D8366D /* Frameworks */,
-				64C812CA28AA271C00D8366D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				64C812CE28AA271C00D8366D /* PBXTargetDependency */,
-			);
-			name = RaboIssueParserTests;
-			productName = RaboIssueParserTests;
-			productReference = 64C812CC28AA271C00D8366D /* RaboIssueParserTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,9 +125,6 @@
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					64C812BB28AA271A00D8366D = {
-						CreatedOnToolsVersion = 13.4.1;
-					};
-					64C812CB28AA271C00D8366D = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
@@ -212,7 +143,6 @@
 			projectRoot = "";
 			targets = (
 				64C812BB28AA271A00D8366D /* RaboIssueParser */,
-				64C812CB28AA271C00D8366D /* RaboIssueParserTests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,13 +157,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64C812CA28AA271C00D8366D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -245,23 +168,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		64C812C828AA271C00D8366D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64C812D128AA271C00D8366D /* RaboIssueParserTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		64C812CE28AA271C00D8366D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 64C812BB28AA271A00D8366D /* RaboIssueParser */;
-			targetProxy = 64C812CD28AA271C00D8366D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		64C812DE28AA271C00D8366D /* Debug */ = {
@@ -436,42 +343,6 @@
 			};
 			name = Release;
 		};
-		64C812E428AA271C00D8366D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3Y2T5257C;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaapmanenschijn.RaboIssueParserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		64C812E528AA271C00D8366D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3Y2T5257C;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jaapmanenschijn.RaboIssueParserTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,15 +360,6 @@
 			buildConfigurations = (
 				64C812E128AA271C00D8366D /* Debug */,
 				64C812E228AA271C00D8366D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		64C812E328AA271C00D8366D /* Build configuration list for PBXNativeTarget "RaboIssueParserTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				64C812E428AA271C00D8366D /* Debug */,
-				64C812E528AA271C00D8366D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

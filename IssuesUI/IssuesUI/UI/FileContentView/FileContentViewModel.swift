@@ -11,7 +11,7 @@ import SwiftUI
 
 @MainActor
 class FileContentViewModel: ObservableObject {
-    private let pageSize: Int = 50
+    static let pageSize: Int = 50
     
     @Published var users: [UserModel] = []
     @Published var isLoading: Bool = false
@@ -33,7 +33,7 @@ class FileContentViewModel: ObservableObject {
         self.fileName = fileName
     }
     
-    func loadData() async {
+    func loadData(limit: Int = FileContentViewModel.pageSize) async {
         guard let data = data else {
             showingAlert = true
             return
@@ -46,33 +46,27 @@ class FileContentViewModel: ObservableObject {
             }
         }
         
-        Task {
-            do {
-                let csvParser = try CSVParser(data: data)
-                await MainActor.run {
-                    self.parser = csvParser
-                }
-                await loadNextPage()
-                loadingTask.cancel()
-                
-                await MainActor.run {
-                    self.isLoading = false
-                }
-            } catch let error {
-                if let parseError = error as? MalformedCSVError {
-                    errorMessage = parseError.message
-                } else {
-                    errorMessage = "file_content_error".localized()
-                }
-                showingAlert = true
+        do {
+            let csvParser = try CSVParser(data: data)
+            self.parser = csvParser
+            await loadNextPage(limit: limit)
+            loadingTask.cancel()
+            
+            self.isLoading = false
+        } catch let error {
+            if let parseError = error as? MalformedCSVError {
+                errorMessage = parseError.message
+            } else {
+                errorMessage = "file_content_error".localized()
             }
+            showingAlert = true
         }
     }
     
-    func loadNextPage() async {
+    func loadNextPage(limit: Int = FileContentViewModel.pageSize) async {
         var newUsers: [User] = []
         if let parser = parser {
-            for await user in parser.getUsers(limit: pageSize, offset: users.count) {
+            for await user in parser.getUsers(limit: limit, offset: users.count) {
                 newUsers.append(user)
             }
             
@@ -86,7 +80,7 @@ class FileContentViewModel: ObservableObject {
                 }
                 return UserModel(id: user.id, name: name, issueCount: user.issueCount, birthDate: birthDate)
             }))
-            hasMoreData = newUsers.count == pageSize
+            hasMoreData = newUsers.count == limit
         }
     }
 }
